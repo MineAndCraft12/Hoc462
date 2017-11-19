@@ -124,11 +124,13 @@ export default () => {
     ))
   ;[...positionElement.querySelectorAll('input')].forEach((input, index) => {
     input.addEventListener('input', () => {
-      const newPosition = [...objectProperties.position]
-      newPosition[index] = +input.value
-      root.dispatchEvent(new window.CustomEvent('position-changed', {
-        detail: { position: newPosition }
-      }))
+      if(input.value !== '-' && input.value !== ''){
+        const newPosition = [...objectProperties.position]
+        newPosition[index] = +input.value
+        root.dispatchEvent(new window.CustomEvent('position-changed', {
+          detail: { position: newPosition }
+        }))
+      }
     })
   })
   root.addEventListener('position-changed', ({ detail: { position } }) => {
@@ -139,11 +141,13 @@ export default () => {
   })
   ;[...rotationElement.querySelectorAll('input')].forEach((input, index) => {
     input.addEventListener('input', () => {
-      const newRotation = [...objectProperties.rotation]
-      newRotation[index] = +input.value / 180 * Math.PI
-      root.dispatchEvent(new window.CustomEvent('rotation-changed', {
-        detail: { rotation: newRotation }
-      }))
+      if(input.value !== '-' && input.value !== ''){
+        const newRotation = [...objectProperties.rotation]
+        newRotation[index] = +input.value / 180 * Math.PI
+        root.dispatchEvent(new window.CustomEvent('rotation-changed', {
+          detail: { rotation: newRotation }
+        }))
+      }
     })
   })
   root.addEventListener('rotation-changed', ({ detail: { rotation } }) => {
@@ -154,11 +158,13 @@ export default () => {
   })
   ;[...scaleElement.querySelectorAll('input')].forEach((input, index) => {
     input.addEventListener('input', () => {
-      const newScale = [...objectProperties.scale]
-      newScale[index] = +input.value
-      root.dispatchEvent(new window.CustomEvent('scale-changed', {
-        detail: { scale: newScale }
-      }))
+      if(input.value !== '-' && input.value !== ''){
+        const newScale = [...objectProperties.scale]
+        newScale[index] = +input.value
+        root.dispatchEvent(new window.CustomEvent('scale-changed', {
+          detail: { scale: newScale }
+        }))
+      }
     })
   })
   root.addEventListener('scale-changed', ({ detail: { scale } }) => {
